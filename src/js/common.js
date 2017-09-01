@@ -1,6 +1,7 @@
 
 /////
 var room=Math.floor(Math.random() * 6);
+var sound;
 var socket = io.connect();
 socket.on('connect', function() {
 	socket.emit('room',room);
@@ -46,6 +47,9 @@ function fbody(){
 	
 	//noSleep.enable(); // keep the screen on!
 
+
+}
+function audioActiv(){
 
 }
 function reset(){}
