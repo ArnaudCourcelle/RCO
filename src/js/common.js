@@ -1,9 +1,9 @@
 
 /////
-
+var room=Math.floor(Math.random() * 6);
 var socket = io.connect();
 socket.on('connect', function() {
-	socket.emit('connect',
+	socket.emit('room',room);
 	socket.on('update', function(w) {
 			updateWidget(w);       
 	});
@@ -41,7 +41,7 @@ function fbody(){
 	
 	if (!screenfull.enabled) {
 		return false;
-		//screenfull.request();
+		screenfull.request();
 	}
 	
 	//noSleep.enable(); // keep the screen on!

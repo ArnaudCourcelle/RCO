@@ -29,7 +29,7 @@ oscServer.on('message', function(oscMsg, rinfo) {
           updateWidget(args);
           break;
           case '/user':
-          updateRoom(args);
+          updateUser(args);
           break;
           default:
           break;
@@ -37,6 +37,12 @@ oscServer.on('message', function(oscMsg, rinfo) {
 })
 io.sockets.on('connection', function (socket) {
     oscClient.send('/connect',socket.id);
+    socket.on('room',function(room){
+        //socket.leave(socket.room);
+        socket.room = room;
+        socket.join(socket.room);
+        
+    });
     socket.on('msg', function(data) {      
     if (data[0]=="all"){
       updateWidget(data.slice(1, data.length));

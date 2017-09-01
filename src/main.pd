@@ -1,11 +1,33 @@
-#N canvas 678 23 777 803 10;
-#X obj 144 156 mrpeach/unpackOSC;
-#X obj 135 108 mrpeach/udpreceive 57120;
-#X obj 133 209 print;
-#X obj 269 213 mrpeach/packOSC;
-#X obj 265 240 mrpeach/udpsend 57120;
-#X msg 275 183 connect localhost 4445;
-#X connect 0 0 2 0;
+#N canvas 325 154 777 803 10;
+#X obj 140 226 mrpeach/unpackOSC;
+#X obj 140 200 mrpeach/udpreceive 57120;
+#X obj 47 430 mrpeach/packOSC;
+#X obj 46 454 mrpeach/udpsend 57120;
+#X msg 49 391 connect localhost 4445;
+#X obj 140 250 route /connect /disconnect;
+#X obj 137 276 symbol;
+#X msg 130 315 /user \$1 page('welcome');
+#X obj 51 362 loadbang;
+#X msg 245 356 /all page('coucou');
+#X obj 103 221 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 46 482 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+1;
+#X obj 334 198 hradio 15 1 0 6 empty empty empty 0 -8 0 10 -262144
+-1 -1 5;
+#X msg 339 250 /user \$1 page('coucou');
+#X msg 340 316 /user 2 page('coucou');
+#X connect 0 0 5 0;
 #X connect 1 0 0 0;
-#X connect 3 0 4 0;
-#X connect 5 0 3 0;
+#X connect 2 0 3 0;
+#X connect 3 0 11 0;
+#X connect 4 0 3 0;
+#X connect 5 0 6 0;
+#X connect 6 0 7 0;
+#X connect 7 0 2 0;
+#X connect 8 0 4 0;
+#X connect 9 0 2 0;
+#X connect 10 0 6 0;
+#X connect 12 0 13 0;
+#X connect 13 0 2 0;
+#X connect 14 0 2 0;
