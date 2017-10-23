@@ -1,0 +1,31 @@
+Proximity</br>
+
+
+<script>
+if('ondeviceproximity' in window) {
+    // Fired when object is in the detection zone
+    window.addEventListener('deviceproximity', function(event) {
+        // Object distance in centimeters 
+        console.log(event.value + " centimeters");
+        document.body.style.backgroundColor = "#DDDDDD";
+
+    });
+} else {
+    console.log("deviceproximity not supported");
+}
+
+if('ondeviceproximity' in window){
+    // Fired when object is in the detection zone
+    window.addEventListener('userproximity', function(event) {
+        if(event.near == true) {
+            console.log("Object is near");
+            document.body.style.backgroundColor = "#BFB123";
+        } else {
+            console.log("Object is far");
+            document.body.style.backgroundColor = "#AA0123";
+        }
+    });
+} else {
+    console.log("userproximity not supported");
+}
+</script>

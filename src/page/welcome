@@ -1,7 +1,10 @@
 welcome!</br>
 <h5>please touch the screen to activate sound...</h5>
-<script>
+
+
+
+<!--<script>
 $( "#display" ).on("click",function() {
 	sendId('display','merci');
 });
-</script>
+</script>-->

@@ -1,7 +1,7 @@
 <style>
 #display {	
 	background-color:black;
-	background-image: url("../img/oeilArno.jpg");
+	background-image: url("../img/mario.png");
 	background-size:contain;
 	background-repeat:no-repeat;
 	background-position: center; 
