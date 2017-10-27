@@ -1,0 +1,8 @@
+welcome!</br>
+<h5>please touch the screen to activate sound...</h5>
+<script>
+$( "#display" ).on("click",function() {
+	document.location.href="index.html";
+});
+
+</script>

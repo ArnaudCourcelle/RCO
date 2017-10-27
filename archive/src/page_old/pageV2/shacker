@@ -1,0 +1,138 @@
+Secoue moi</br>
+
+<div id="myBar"/></>
+
+<style>
+#myProgress {
+  width:105%;
+  height:105%
+  background-color: #37a3d0;
+
+}
+#myBar {
+  width: 100%;
+  height: 10px;
+  background-color: #fd9422;
+}
+</style>
+
+
+<script>
+
+sound=new Howl({
+  src: ['../sound/org.wav']
+});
+sound.loop(true);
+
+sound.play();
+
+var contexteAudio = new (window.AudioContext || window.webkitAudioContext)();
+
+var timer;
+var volumeSound = 1.0;
+
+var largeur = window.innerWidth;
+var hauteur = window.innerHeight;
+
+var energieCumul = 0;
+var seuilEnergie = 1000;
+  var tolerance = 9+9+9+1; // la tolerance est egale a 2*MaxAccelero+1 avec MaxAccelero = 1;
+  var decr = 5;
+
+  var x = 0;
+  var y = 0;
+  var z = 0;
+
+  vibrate();
+
+  if(window.DeviceOrientationEvent){
+    window.addEventListener("deviceorientation", orientation, false);
+      //console.log("DeviceOrientationEvent is supported");    
+    }else{
+   // console.log("DeviceOrientationEvent is not supported");
+ }
+ // document.body.style.backgroundColor = "#AA0000";  
+
+
+ window.ondevicemotion = function(event) {
+
+  if(energieCumul >= seuilEnergie){
+    accelerOff();
+    stopVibrate();
+    window.ondevicemotion = null;
+    sound.stop();
+      //document.body.style.backgroundColor = "#00AA14";
+
+    } else {
+     x = event.accelerationIncludingGravity.x; 
+      //document.getElementById("rangeX").value = x;
+      y = event.accelerationIncludingGravity.y;  
+    //  document.getElementById("rangeY").value = y;
+    z = event.accelerationIncludingGravity.z; 
+      //document.getElementById("rangeZ").value = z;
+   //console.log(z);
+   if (Math.abs(x)+Math.abs(y)+Math.abs(z)>tolerance){
+    energieCumul += (Math.abs(x)+Math.abs(y)+Math.abs(z))/1.2;
+        //pour faire decroitre le son
+        if(volumeSound < 1.0 || volumeSound > 0){
+         volumeSound -= 0.2; 
+         sound.volume(volumeSound);
+
+       } 
+
+       
+     } else {
+      if(energieCumul > 0 ){
+        energieCumul -= decr;
+        if(volumeSound < 1.0){
+         volumeSound += 0.1; 
+         sound.volume(volumeSound);
+
+       }
+       
+     }
+   }
+   console.log(energieCumul);
+   move(energieCumul/10);
+      //document.getElementById("rangeJauge").value = energieCumul;
+    }
+
+  }
+
+
+  function accelerOff(){
+    window.ondevicemotion = null;
+  } 
+
+
+
+  function move(value) {
+    var elem = document.getElementById("myBar");   
+    var width = 1;
+    var id = setInterval(energieCumul, seuilEnergie);
+    if (width >= seuilEnergie) {
+      clearInterval(id);
+    } else {
+      width+=value; 
+      elem.style.height = width + '%'; 
+    }
+  }
+
+
+
+  function vibrate(){
+// traitement
+window.navigator.vibrate(3000);
+timer = setTimeout(vibrate,3000); 
+}
+
+
+function stopVibrate() {
+  
+  clearTimeout(timer);
+  timer = 0;
+  window.navigator.vibrate(0);
+
+}
+
+</script>

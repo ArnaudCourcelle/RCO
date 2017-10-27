@@ -1,0 +1,128 @@
+Accelerometer testing</br>
+
+
+<div id="divJauge">
+	<input type="range" min="0" max="1000" value="0" class="slider" id="rangeJauge">
+</div>
+
+<div id="divBtn">
+	<button type="button" id="btnMute" onClick="SoundOnOff()" src="unmute.png">Sound OFF </button>
+	<button type="button" id="btnSensors" onClick="acceleroOnOff()" >Accelero OFF</button>
+</div>
+
+<div id="slidecontainerX">
+  <input type="range" min="-10" max="10" value="0" class="slider" id="rangeX">
+   <input type="text" id="valueX" name="valueX">
+</div>
+<div id="slidecontainerY">
+	<input type="range" min="-10" max="10" value="0" class="slider" id="rangeY">
+  	 <input type="text" id="valueY" name="valueY">
+</div>
+<div id="slidecontainerZ">
+	<input type="range" min="-10" max="10" value="0" class="slider" id="rangeZ">
+   	<input type="text" id="valueZ" name="valueZ">
+</div>
+
+
+
+<script>
+	
+
+	//test du web audio avec une sine wave 440Hz simple. Ne fonctionne pas sur le smartphone
+	try {
+		var contexteAudio = new (window.AudioContext || window.webkitAudioContext)();
+	}
+	catch(e) {
+	  alert('Web Audio API is not supported in this browser');
+	}
+	var oscillateur = contexteAudio.createOscillator();
+	var noeudGain = contexteAudio.createGain();
+	oscillateur.connect(noeudGain);
+	noeudGain.connect(contexteAudio.destination);
+
+	var largeur = window.innerWidth;
+	var hauteur = window.innerHeight;
+
+	var frequenceMax = 6000;
+	var volumeMax = 1;
+
+	var frequenceInitiale = 440;
+	var volumeInitial = 0.5;
+
+	var energieCumul = 0;
+	var seuilEnergie = 1000;
+	var tolerance = 9+9+1; // la tolerance est egale a 2*MaxAccelero+1 avec MaxAccelero = 9;
+
+	// paramètres de l'oscillateur
+
+	oscillateur.type = 'sine'; // onde sinusoïdale — les autres valeurs possible sont : 'square', 'sawtooth', 'triangle' et 'custom'
+	oscillateur.frequency.value = frequenceInitiale; // valeur en hertz
+
+	oscillateur.connect(noeudGain);
+	noeudGain.connect(contexteAudio.destination);
+	oscillateur.start();
+
+	if(window.DeviceOrientationEvent){
+	  window.addEventListener("deviceorientation", orientation, false);
+	    console.log("DeviceOrientationEvent is supported");
+	}else{
+	  console.log("DeviceOrientationEvent is not supported");
+	}
+	document.body.style.backgroundColor = "#AA0000";	
+
+
+	window.ondevicemotion = function(event) {
+
+
+		if(energieCumul >= seuilEnergie){
+			soundOff();
+			accelerOff();
+			document.body.style.backgroundColor = "#00AA14";
+
+		}
+
+		var x = event.accelerationIncludingGravity.x; 
+		document.getElementById("valueX").value = "X= " + x ;
+		document.getElementById("rangeX").value = x;
+		//oscillateur.frequency.value = x*100;
+		//son avec orientation
+		
+
+		
+		var y = event.accelerationIncludingGravity.y;  
+		document.getElementById("valueY").value = "Y= " + x ;
+		document.getElementById("rangeY").value = y;
+	/*	if(y<2 && y>-2){
+		} else{
+		}*/
+
+		var z = event.accelerationIncludingGravity.z; 
+		document.getElementById("valueZ").value = "Z= " + x ;
+		document.getElementById("rangeZ").value = z;
+
+
+		if (x+y+z>tolerance){
+			energieCumul += x+y+z;
+			document.getElementById("rangeJauge").value = energieCumul;
+			if(noeudGain.gain.value > 0){
+				noeudGain.gain.value = noeudGain.gain.value - 0.035;
+
+			}
+
+		}
+	}
+
+
+
+ 
+	function soundOff(){
+		oscillateur.stop();
+	}
+
+	function accelerOff(){
+		window.ondevicemotion = null;
+
+	} 
+	 
+	
+</script>

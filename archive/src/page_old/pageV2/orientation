@@ -1,0 +1,115 @@
+Accelerometer testing</br>
+
+
+<div id="divJauge">
+	<input type="range" min="0" max="1000" value="0" class="slider" id="rangeJauge">
+</div>
+
+
+<div id="slidecontainerX">
+  <input type="range" min="-10" max="10" value="0" class="slider" id="rangeX">
+</div>
+<div id="slidecontainerY">
+	<input type="range" min="-10" max="10" value="0" class="slider" id="rangeY">
+</div>
+<div id="slidecontainerZ">
+	<input type="range" min="-10" max="10" value="0" class="slider" id="rangeZ">
+</div>
+
+
+
+<script>
+	
+
+	//test du web audio avec une sine wave 440Hz simple. Ne fonctionne pas sur le smartphone
+	try {
+		var contexteAudio = new (window.AudioContext || window.webkitAudioContext)();
+	}
+	catch(e) {
+	  alert('Web Audio API is not supported in this browser');
+	}
+	var oscillateur = contexteAudio.createOscillator();
+	var noeudGain = contexteAudio.createGain();
+	oscillateur.connect(noeudGain);
+	noeudGain.connect(contexteAudio.destination);
+
+	var largeur = window.innerWidth;
+	var hauteur = window.innerHeight;
+
+	var orientationX = -8;
+	var orientationY = -8;
+	var orientationZ = 9;
+
+	var frequenceMax = 6000;
+	var volumeMax = 1;
+
+	var frequenceInitiale = 440;
+	var volumeInitial = 0.5;
+
+	var energieCumul = 0;
+	var seuilEnergie = 1000;
+	var tolerance = 9+9+1; // la tolerance est egale a 2*MaxAccelero+1 avec MaxAccelero = 9;
+
+	// paramètres de l'oscillateur
+
+	oscillateur.type = 'sine'; // onde sinusoïdale — les autres valeurs possible sont : 'square', 'sawtooth', 'triangle' et 'custom'
+	oscillateur.frequency.value = frequenceInitiale; // valeur en hertz
+
+	oscillateur.connect(noeudGain);
+	noeudGain.connect(contexteAudio.destination);
+	oscillateur.start();
+
+	if(window.DeviceOrientationEvent){
+	  window.addEventListener("deviceorientation", orientation, false);
+	    console.log("DeviceOrientationEvent is supported");
+	}else{
+	  console.log("DeviceOrientationEvent is not supported");
+	}
+
+
+	window.ondevicemotion = function(event) {
+
+
+	//	if(energieCumul >= seuilEnergie){
+	//		soundOff();
+	//		accelerOff();
+	//	}
+
+		var x = event.accelerationIncludingGravity.x; 
+		document.getElementById("rangeX").value = x;
+		oscillateur.frequency.value = Math.abs(x+10)*100;
+		//son avec orientation
+				
+		var y = event.accelerationIncludingGravity.y;  
+		document.getElementById("rangeY").value = y;
+
+		var z = event.accelerationIncludingGravity.z; 
+		document.getElementById("rangeZ").value = z;
+
+	
+
+		if(x < orientationX && y > orientationY && z >  orientationZ){
+			soundOff();
+			accelerOff();
+
+		}
+
+		//Orientation fin du son
+
+
+	}
+
+
+
+ 
+	function soundOff(){
+		oscillateur.stop();
+	}
+
+	function accelerOff(){
+		window.ondevicemotion = null;
+
+	} 
+	 
+	
+</script>

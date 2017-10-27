@@ -1,0 +1,37 @@
+
+<!doctype html>
+<html>
+<head>
+    <title>mySynth</title>
+    <script>
+    var context,isPlaying=false,o;
+    //var context = typeof(window.AudioContext) !== "undefined" ? new AudioContext() : new webkitAudioContext();
+	 if('webkitAudioContext' in window || 'AudioContext' in window ) {
+		var context = new (window.AudioContext || window.webkitAudioContext)();
+		
+		
+	}
+	 function toggleSound(button) {
+        //alert('r');
+            if(!isPlaying) {
+                o = context.createOscillator()
+                o.type = "sine"
+                o.connect(context.destination)
+            	o.start();
+                //playSound();
+                button.value = "Pause ";
+                isPlaying = true;
+            }
+            else {
+                o.disconnect(context.destination)
+				o.stop();
+                button.value = "Play ";
+                isPlaying = false;
+            }
+        }
+	</script>
+</head>
+<body >
+    <input id="play" onclick="toggleSound(this)" type="button" value="Play " />
+    </body>
+</html>

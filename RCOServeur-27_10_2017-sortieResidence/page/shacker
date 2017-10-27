@@ -1,0 +1,227 @@
+Secoue moi</br>
+
+<div id="slidecontainerX">
+<input type="range" min="-10" max="10" value="0" class="slider" id="rangeX">
+</div>
+
+<script>
+/*if(!(isIOSChrome ||(isChromium !== null &&
+  typeof isChromium !== "undefined" &&
+  vendorName === "Google Inc." &&
+  isOpera === false &&
+  isIEedge === false)) ){
+        var changementPage = Math.floor(Math.random()*2); 
+        if(changementPage == 0){
+                page('imageisa');
+        } else {
+                page('imagemario');
+
+        }
+}*/
+</script>
+
+<div id="myBar"/></>
+
+<style>
+#myProgress {
+      width:100%;
+      height:100%;
+      background-color: #37a3d0;
+}
+#myBar {
+      width: 100%;
+      height: 10px;
+      background-color: #fd9422;
+}
+</style>
+
+
+<script>
+
+//vibrate commente + stopvibrate + isChrome
+
+
+/*if(isIOSChrome ||(isChromium !== null &&
+      typeof isChromium !== "undefined" &&
+      vendorName === "Google Inc." &&
+      isOpera === false &&
+      isIEedge === false) ){
+  */     
+
+
+sound.loop(true);
+sound.play();
+
+var contexteAudio = new (window.AudioContext || window.webkitAudioContext)();
+
+var timer;
+var volumeSound = 1.0;
+
+var largeur = window.innerWidth;
+var hauteur = window.innerHeight;
+
+var energieCumul = 0;
+var seuilEnergie = 1000;
+  var tolerance = 9+9+9+1; // la tolerance est egale a 2*MaxAccelero+1 avec MaxAccelero = 1;
+  var decr = 5;
+
+  var x = 0;
+  var y = 0;
+  var z = 0;
+
+
+
+  //vibrate();
+
+        if(window.DeviceOrientationEvent){
+          var x=20,y=20,z=20;
+          window.ondevicemotion = function(event) {
+
+
+          //condition d'arret
+          if(energieCumul >= seuilEnergie){
+            sound.stop();
+            accelerOff();
+          //  stopVibrate();
+            window.ondevicemotion = null;
+            
+
+            var changementPage = Math.floor(Math.random()*2); 
+            if(changementPage == 0){
+                  page('imageisa');
+          } else {
+                  page('imagemario');
+
+          }
+        } else {
+             x = event.accelerationIncludingGravity.x; 
+              document.getElementById("rangeX").value = x;
+              y = event.accelerationIncludingGravity.y;  
+            //  document.getElementById("rangeY").value = y;
+            z = event.accelerationIncludingGravity.z; 
+              //document.getElementById("rangeZ").value = z;
+           //console.log(z);
+           if (Math.abs(x)+Math.abs(y)+Math.abs(z)>tolerance){
+            energieCumul += (Math.abs(x)+Math.abs(y)+Math.abs(z))/8;
+                //pour faire decroitre le son
+                if(volumeSound < 1.0 || volumeSound > 0){
+                       volumeSound = 1-(energieCumul/1000); 
+                       sound.volume(volumeSound);
+
+               }        
+        } else {
+                if(energieCumul > 0 ){
+                        energieCumul -= decr;
+                        if(volumeSound <= 1.0){
+                               volumeSound = 1-(energieCumul/1000); 
+                               sound.volume(Math.sqrt(volumeSound));
+                               sound.rate(Math.abs(2-volumeSound));
+
+                       }
+               
+                }
+        }
+          // console.log(energieCumul);
+          move(energieCumul/10);
+              //document.getElementById("rangeJauge").value = energieCumul;
+        }
+
+}
+        }else{
+            console.log("DeviceOrientationEvent is not supported");
+              var changementPage = Math.floor(Math.random()*2); 
+                if(changementPage == 0){
+                        page('imageisa');
+                } else {
+                        page('imagemario');
+                }
+        }
+ // document.body.style.backgroundColor = "#AA0000";  
+//}
+
+
+
+
+function accelerOff(){
+    window.ondevicemotion = null;
+} 
+
+
+
+function move(value) {
+    var elem = document.getElementById("myBar");   
+    var width = 1;
+    var id = setInterval(energieCumul, seuilEnergie);
+    if (width >= seuilEnergie) {
+          clearInterval(id);
+  } else {
+          width+=value; 
+          elem.style.height = width + '%'; 
+  }
+}
+
+
+
+function vibrate(){
+
+
+
+    if (isIOSChrome) {
+     // is Google Chrome on IOS
+     // traitement
+     window.navigator.vibrate(3000);
+     timer = setTimeout(vibrate,3000); 
+} else if (
+    isChromium !== null &&
+    typeof isChromium !== "undefined" &&
+    vendorName === "Google Inc." &&
+    isOpera === false &&
+    isIEedge === false
+    ) {
+     // is Google Chrome
+     // traitement
+     window.navigator.vibrate(3000);
+     timer = setTimeout(vibrate,3000); 
+}  else if(isFirefox){
+    window.navigator.vibrate(3000);
+    timer = setTimeout(vibrate,3000); 
+}else { 
+     // not Google Chrome 
+}
+
+}
+
+
+function stopVibrate() {
+
+
+      if (isIOSChrome) {
+     // is Google Chrome on IOS
+     // traitement
+     clearTimeout(timer);
+     timer = 0;
+     window.navigator.vibrate(0);
+} else if (
+    isChromium !== null &&
+    typeof isChromium !== "undefined" &&
+    vendorName === "Google Inc." &&
+    isOpera === false &&
+    isIEedge === false
+    ) {
+     // is Google Chrome
+     // traitement
+     clearTimeout(timer);
+     timer = 0;
+     window.navigator.vibrate(0);
+} else if(isFirefox){
+    clearTimeout(timer);
+    timer = 0;
+    window.navigator.vibrate(0);
+} else { 
+     // not Google Chrome 
+} 
+
+
+}
+
+</script>

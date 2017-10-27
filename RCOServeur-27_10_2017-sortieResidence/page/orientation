@@ -1,0 +1,185 @@
+Trouver l orientation</br>
+
+<script>
+/*if(!(isIOSChrome ||(isChromium !== null &&
+	typeof isChromium !== "undefined" &&
+	vendorName === "Google Inc." &&
+	isOpera === false &&
+	isIEedge === false)) ){
+	var changementPage = Math.floor(Math.random()*2); 
+if(changementPage == 0){
+	page('imageambre');
+} else {
+	page('imagedavid');
+
+}
+}*/
+</script>
+
+
+<div id="slidecontainerX">
+<input type="range" min="-10" max="10" value="0" class="slider" id="rangeX">
+</div>
+<div id="slidecontainerY">
+<input type="range" min="-10" max="10" value="0" class="slider" id="rangeY">
+</div>
+<div id="slidecontainerZ">
+<input type="range" min="-10" max="10" value="0" class="slider" id="rangeZ">
+</div>
+
+
+<script>
+
+
+/*if(isIOSChrome || (isChromium !== null &&
+	typeof isChromium !== "undefined" &&
+	vendorName === "Google Inc." &&
+	isOpera === false &&
+	isIEedge === false) )*/
+/*if(1==1){*/
+
+
+
+
+
+
+
+	//test du web audio avec une sine wave 440Hz simple. Ne fonctionne pas sur le smartphone
+	try {
+		;
+		//var context = new (window.AudioContext || window.webkitAudioContext)();
+		//console.log("API audio supported");
+	}
+	catch(e) {
+	  //alert('Web Audio API is not supported in this browser');
+	  console.log("API audio not supported");
+	}
+	var firstShot=0;
+	//var oscillateur = context.createOscillator();
+    //oscillateurBis = context.createOscillator();
+	//var noeudGain = context.createGain();
+	//oscillateur.connect(noeudGain);
+	noeudGain.connect(context.destination);
+
+	var largeur = window.innerWidth;
+	var hauteur = window.innerHeight;
+
+	//variable d'orientation
+	var orientationXmin = -9;
+	var orientationXmax = 9;
+
+	var orientationYmin = -9;
+	var orientationYmax = 0.5;
+
+	var orientationZmin = -9;
+	var orientationZmax = 9;
+
+
+	//---------------------------------------
+	//variable du son
+
+	var frequenceMax = 6000;
+	var volumeMax = 1;
+
+	var frequenceInitiale = 440;
+	var volumeInitial = 0.5;
+
+	// paramètres de l'oscillateur
+	//oscillateur.type = 'sine'; // onde sinusoïdale — les autres valeurs possible sont : 'square', 'sawtooth', 'triangle' et 'custom'
+	//oscillateur.frequency.value = frequenceInitiale; // valeur en hertz
+	oscillateurBis.type = 'sine';
+	oscillateurBis.frequency.value = 660; // valeur en hertz
+
+
+	//oscillateur.connect(noeudGain);
+	oscillateurBis.connect(noeudGain);
+	noeudGain.connect(context.destination);
+	//oscillateur.start();
+
+	oscillateurBis.start();
+
+function toggleSound(){
+	console.log('truc');
+	oscillateurBis.start();
+}
+	//console.log('test');
+	function soundOff(){
+	oscillateurBis.stop();
+		//oscillateur.stop();
+	}
+
+	function accelerOff(){
+		window.ondevicemotion = null;
+
+	} 
+	if(window.DeviceOrientationEvent){
+
+		var xxx=20,yyy=20,zzz=20;
+		window.ondevicemotion = function(event) {
+
+	 xxx = event.accelerationIncludingGravity.x; 
+	document.getElementById("rangeX").value = xxx;
+	oscillateurBis.frequency.value = Math.abs(xxx+10)*80;
+
+
+	 yyy = event.accelerationIncludingGravity.y;  
+	document.getElementById("rangeY").value = yyy;
+	oscillateurBis.frequency.value = Math.abs(yyy+10)*100;
+
+	 zzz = event.accelerationIncludingGravity.z; 
+	document.getElementById("rangeZ").value = zzz;
+
+	
+
+	if( orientationXmin < xxx < orientationXmax  
+		&& orientationYmin < yyy < orientationYmax 
+		&& orientationZmin < zzz < orientationZmax ){
+		if(firstShot<10){firstShot++;}else{
+		//console.log(zzz);
+		soundOff();
+		accelerOff();
+
+		var changementPage = Math.floor(Math.random()*2); 
+		if(changementPage == 0){
+			page('imageambre');
+		} else {
+			page('imagedavid');
+
+		}
+	}
+	}
+}
+	//	window.addEventListener("deviceorientation", orientation, false);
+	    //	console.log("DeviceOrientationEvent is supported");
+	}else{
+	//	console.log("DeviceOrientationEvent is not supported");
+		var changementPage = Math.floor(Math.random()*2); 
+		if(changementPage == 0){
+			page('imageambre');
+		} else {
+			page('imagedavid');
+		}
+	}
+//}
+
+
+
+
+
+function changerPage(){
+
+	var changementPage = Math.floor(Math.random()*2); 
+	if(changementPage == 0){
+		page('imageambre');
+	} else {
+		page('imagedavid');
+
+	}
+
+}
+
+
+
+
+	
+	</script>
