@@ -1,7 +1,0 @@
-<script>
-sound=new Howl({
-  src: ['../sound/dot.mp3']
-});
-
-sound.play();
-</script>
