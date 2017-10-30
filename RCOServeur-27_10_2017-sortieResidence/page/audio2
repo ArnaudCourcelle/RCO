@@ -1,6 +1,0 @@
-<script>
-var o2 = context.createOscillator()
-                o2.type = "sine"
-                o2.connect(context.destination)
-                o2.start();
-               </script>
