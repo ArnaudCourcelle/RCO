@@ -1,0 +1,48 @@
+
+<input type="button" value="Bouton à cliquer" id="play">
+
+
+<script>
+console.log("XX");
+
+var contexteAudio = new (window.AudioContext || window.webkitAudioContext)();
+console.log("test");
+var oscillateurBis = contexteAudio.createOscillator();
+console.log("a");
+
+var noeudGain = contexteAudio.createGain();
+console.log("b");
+
+noeudGain.connect(contexteAudio.destination);
+console.log("c");
+
+oscillateurBis.type = 'sine';
+console.log("d");
+
+oscillateurBis.frequency.value = 660; // valeur en hertz
+console.log("e");
+
+oscillateurBis.connect(noeudGain);
+console.log("f");
+
+noeudGain.connect(contexteAudio.destination);
+console.log("g");
+
+//oscillateurBis.start();
+console.log("h");
+
+
+
+play.addEventListener('touch', function() {
+	console.log("FFFF");
+  oscillateurBis.start(0);
+}, false);
+//play.addEventListener('touchend', function() {
+//		console.log("GGGGG");
+
+  //oscillateurBis.start(0);
+//}, false);
+
+
+
+</script>
