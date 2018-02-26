@@ -1,0 +1,27 @@
+#N canvas 130 63 741 445 10;
+#X obj 174 203 shell;
+#X obj 193 52 getdir;
+#X obj 192 14 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 151 307 print;
+#X msg 171 160 \$1/./node \$1/index.js;
+#X obj 339 133 mrpeach/udpsend;
+#X obj 342 167 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 321 66 mrpeach/packOSC;
+#X msg 75 135 ls;
+#X msg 372 93 connect localhost 9001;
+#X msg 296 104 disconnect;
+#X msg 318 25 /pub new 2 3;
+#X msg 420 33 /pub osc /update joinRoom('rChat');
+#X connect 0 0 3 0;
+#X connect 1 0 4 0;
+#X connect 2 0 1 0;
+#X connect 4 0 0 0;
+#X connect 5 0 6 0;
+#X connect 7 0 5 0;
+#X connect 8 0 0 0;
+#X connect 9 0 5 0;
+#X connect 10 0 5 0;
+#X connect 11 0 7 0;
+#X connect 12 0 7 0;

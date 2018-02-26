@@ -1,0 +1,78 @@
+
+<div class="center">3 sauts sur place</div>
+<style>
+#arrowAnim {
+  width: 100vw;
+  height: 100vh;
+  
+  display: flex;
+  justify-content: center;
+ 
+}
+
+.arrow {
+  width: 5vw;
+  height: 5vw;
+  border: 2.5vw solid;
+  border-color: white transparent transparent white;
+  transform: rotate(45deg);
+}
+
+
+.arrowSliding {
+  position: absolute;
+  -webkit-animation: slide 1s linear infinite; 
+          animation: slide 1s linear infinite;
+         opacity:0;
+         
+}
+.delay0 {
+  
+    transform:translateX(0%);
+}
+.delay1 {
+ 
+    transform:translateX(10%);
+}
+.delay2 {
+ 
+    transform:translateX(20%);
+}
+}
+.delay3 {
+  
+    transform:translateX(30%);
+}
+}
+
+@-webkit-keyframes slide {
+   0% { opacity:0; }	
+   20% { opacity:1;  }	
+   80% { opacity:1;  }	
+  100% { opacity:0; }	
+}
+@keyframes slide {
+    0% { opacity:0; }	
+   20% { opacity:1;  }	
+   80% { opacity:1;  }	
+  100% { opacity:0; }	
+}
+</style>
+
+<div id="arrowAnim">
+  <div class="arrowSliding delay0">
+    <div class="arrow"></div>
+  </div>
+  <div class="arrowSliding delay1">
+    <div class="arrow"></div>
+  </div>
+  <div class="arrowSliding delay2">
+    <div class="arrow"></div>
+  </div>
+  <div class="arrowSliding delay3">
+    <div class="arrow"></div>
+  </div>
+</div>
+<script>
+speach('trois sauts sur place');
+</script>

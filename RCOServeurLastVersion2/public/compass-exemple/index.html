@@ -1,0 +1,121 @@
+<!doctype html>
+<html>
+<head>
+<!--Author: Ben Taylor -->
+	<title>Yeah!</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="viewport" content="initial-scale=1., user-scalable=no, width=device-width"/>
+		<link rel="stylesheet" type="text/css" href="style.css">
+
+	<!--<script type="text/javascript" src="script.js"></script>
+			<script type="text/javascript" src="speechtest.js"></script>-->
+		<script type="text/javascript" src="tone.min.js"></script>
+
+
+</head>
+	<body >
+
+	<div id="notice"></div>
+
+	<div class="compass">
+		<div class="arrow"></div>
+		<div class="disc" id="compassDiscImg"></div>
+	</div>
+		
+	</body>
+	<script>
+	
+	var player = new Tone.Player("ascenceur.mp3");
+	player.autostart = true;
+	player.loop = true;
+	//player.volume.value=-20;
+	var gain =new Tone.Gain(0).toMaster();
+	var gain_noise =new Tone.Gain(0).toMaster();
+			
+
+	player.connect(gain);
+	var noise = new Tone.Noise("pink").start();
+	//noise.connect(gain_noise);
+	var autoFilter = new Tone.AutoFilter({
+	"frequency" : "8m", 
+	"min" : 800, 
+	"max" : 15000
+	});
+	//noise.connect(Tone.Master);
+	noise.connect(autoFilter);
+	autoFilter.connect(gain_noise);
+	autoFilter.start();
+	var direction=90;
+
+
+  function compass(e) {
+ 	var dir=e.alpha;
+      var compassDisc = document.getElementById("compassDiscImg");
+      compassDisc.style.webkitTransform = "rotate("+ dir +"deg)";
+      compassDisc.style.MozTransform = "rotate("+ dir +"deg)";
+      compassDisc.style.transform = "rotate("+ dir +"deg)";
+    }
+function soundCompass(e){
+		var y=Math.abs(e.beta/180);
+		var x=direction-e.alpha;
+		x=Math.abs(x);
+		if (x>180){
+			x=360-x;
+		}
+		x=x/180;
+		player.playbackRate=1-y;
+		gain.gain.value=x*3;
+		gain_noise.gain.value=1-x;
+		autoFilter.filter.frequency.value=y*600;
+	}
+
+window.addEventListener('deviceorientation',soundCompass,false);
+window.addEventListener('deviceorientation',compass,false);
+/*
+ //    speechSynthesis.speak(SpeechSynthesisUtterance('Hello World'));
+//speak("bonjour et bienvenue dans R C O");
+	if (window.DeviceOrientationEvent) {
+  window.addEventListener('deviceorientation', function(eventData) {  	
+    var tiltLR = eventData.gamma;
+    var tiltFB = eventData.beta;
+
+    var dir = eventData.alpha
+    deviceOrientationHandler(tiltLR, tiltFB, dir);
+  }, false);
+   window.addEventListener('deviceorientation', function(eventData) {  	
+    var tiltLR = eventData.gamma;
+    var tiltFB = eventData.beta;
+    var dir = eventData.alpha
+    soundCompass(tiltLR, tiltFB, dir);
+  }, false);
+} else {
+  //document.getElementById("notice").innerHTML = "Helaas. De DeviceOrientationEvent API word niet door dit toestel ondersteund."
+};
+		//Tone.Master.volume=0;
+function soundCompass(tiltLR, tiltFB, dir){
+		var y=Math.abs(tiltFB/180);
+		var x=direction-dir;
+
+		x=Math.abs(x);
+		if (x>180){
+			x=360-x;
+		}
+		x=x/180;
+
+		player.playbackRate=1-y;
+	//	document.getElementById("notice").innerHTML = x;
+		gain.gain.value=x*3;
+		gain_noise.gain.value=1-x;
+		autoFilter.filter.frequency.value=y*600;
+	}
+
+    function deviceOrientationHandler(tiltLR, tiltFB, dir) {
+ 
+      var compassDisc = document.getElementById("compassDiscImg");
+      compassDisc.style.webkitTransform = "rotate("+ dir +"deg)";
+      compassDisc.style.MozTransform = "rotate("+ dir +"deg)";
+      compassDisc.style.transform = "rotate("+ dir +"deg)";
+    }
+*/
+	</script>
+</html>

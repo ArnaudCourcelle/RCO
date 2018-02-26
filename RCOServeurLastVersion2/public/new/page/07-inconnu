@@ -1,0 +1,9 @@
+<style>
+#display{
+    background-color:black;
+}
+</style>
+<script>
+speach('raprochez vous dune inconnue');
+</script>
+Rapprochez vous d'un.e inconnu.e

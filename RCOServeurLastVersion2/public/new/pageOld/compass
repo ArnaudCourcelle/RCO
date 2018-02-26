@@ -1,0 +1,56 @@
+<style>
+.compass {
+  position: relative;
+  width: 260px;
+  height: 260px;
+  margin: 20px auto;
+  background: #222;
+  padding: 20px;
+  border-radius: 40px;
+  border: 5px solid #444;
+  overflow: hidden;
+}
+.compass .disc {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  z-index: 200;
+ /* background: black;*/
+  background: url('img/compass.svg');
+  width: 260px;
+  height: 260px;
+  background-size: 100%;
+}
+.compass .arrow {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  z-index: 1000;
+  /*background: #000;*/
+  background: url('img/arrow.svg');
+  width: 260px;
+  height: 260px;
+  background-size: 100%;
+}
+</style>
+<div id="notice"></div>
+
+	<div class="compass">
+		<div class="arrow"></div>
+		<div class="disc" id="compassDiscImg"></div>
+</div>
+<script>
+	window.addEventListener('deviceorientation',soundCompass,false);
+	window.addEventListener('deviceorientation',compass,false);
+	player.autostart = true;
+	//player.start();
+	gain.toMaster();
+	gain_noise.toMaster();
+	player.connect(gain);
+	noise.connect(autoFilter);
+	autoFilter.connect(gain_noise);
+	noise.start();
+	autoFilter.start();
+	var compass_direction=90;
+</script>
+	

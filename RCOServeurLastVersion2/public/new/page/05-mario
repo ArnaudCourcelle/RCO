@@ -1,0 +1,22 @@
+<style>
+#display {	
+	background-color:black;
+	background-image: url("../img/mario.jpg");
+	background-size:cover;
+	background-repeat:no-repeat;
+	background-position: center; 
+}
+.text1{
+	position:absolute;
+	text-align:center;
+	width:100%;
+	bottom:84%;
+	font-size:0.8em;
+}
+</style>
+<script>
+speach('rejoignez mario')
+</script>
+<div class='text1'>
+Rejoignez Mario
+<div>

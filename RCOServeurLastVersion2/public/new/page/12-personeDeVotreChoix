@@ -1,0 +1,9 @@
+<style>
+.c{
+font-size:0.7em;
+}
+</style>
+<div class="c">Mettez vous face à une personne de votre choix, regardez la dans les yeux</div>
+<script>
+speach('Mettez vous face a une personne de votre choix regardez la dans les yeux');
+</script>

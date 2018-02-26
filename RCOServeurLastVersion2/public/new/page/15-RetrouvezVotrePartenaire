@@ -1,0 +1,10 @@
+<style>
+.c{
+font-size:0.7em;
+}
+</style>
+<div class="c">
+Retrouvez votre partenaire de regard et dansez ensemble</div>
+<script>
+speach('Retrouvez votre partenaire de regard et dansez ensemble');
+</script>

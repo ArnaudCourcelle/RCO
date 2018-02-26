@@ -1,0 +1,6 @@
+<script>
+  window.addEventListener('devicemotion', shake_applause,false)
+  window.addEventListener('deviceorientation',passTilt,false); 
+
+  </script>
+  Restez dans le même rythme!

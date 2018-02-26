@@ -1,0 +1,9 @@
+<script>
+  window.addEventListener('devicemotion', shake_applause,false)
+  window.addEventListener('deviceorientation',passTilt,false); 
+  note.connect(gain);
+  gain.gain.value=4;
+  gain.toMaster();
+  speach('battez le rythme ensemble');
+  </script>
+  Secouez, Battez le rythme ensemble.

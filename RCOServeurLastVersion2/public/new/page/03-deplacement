@@ -1,0 +1,96 @@
+
+<style>
+#arrowAnim {
+  width: 50vw;
+  height: 100vh;
+  border:1px white solid;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.arrow {
+  width: 3vh;
+  height: 3vh;
+  border: 1.5vh solid;
+  border-color: white transparent transparent white;
+  transform: translateY(37.5vh)rotate(135deg);
+}
+
+
+.arrowSliding {
+  position: absolute;
+  -webkit-animation: slide 4s  infinite,opac 4s linear  infinite; 
+          animation: slide 4s linear infinite,opac 4s ease-out infinite;
+}
+
+.delay1 {
+  -webkit-animation-delay: 1s; 
+    animation-delay: 1s;
+    opacity:0
+}
+.delay2 {
+  -webkit-animation-delay: 2s; 
+    animation-delay: 2s;
+    opacity:0
+}
+.delay3 {
+  -webkit-animation-delay: 3s; 
+    animation-delay: 3s;
+    opacity:0
+}
+
+@
+@keyframes slide {
+	from {left:0%;}
+	to {left:100%;}
+   
+}
+@keyframes opac {
+	/*from {left:0%;}
+	to {left:100%;}*/
+    0% { opacity:0;  }	
+   33% { opacity:1; }	
+   66% { opacity:1;  }	
+  100% { opacity:0;  }	
+}
+@-webkit-keyframes slide {
+	from {left:0%;}
+	to {left:100%;}
+}
+@-webkit-keyframes opac {
+	/*from {opacity:0;}
+	to {opacity:1;}*/
+	 0% { opacity:0;  }	
+   33% { opacity:1; }	
+   66% { opacity:1;  }	
+  100% { opacity:0;  }
+  
+}
+</style>
+<div id=deplacement>faites 5 pas en avant</div>
+
+<div id="arrowAnim">
+  <div class="arrowSliding">
+    <div class="arrow"></div>
+  </div>
+  <div class="arrowSliding delay1">
+    <div class="arrow"></div>
+  </div>
+  <div class="arrowSliding delay2">
+    <div class="arrow"></div>
+  </div>
+  <div class="arrowSliding delay3">
+    <div class="arrow"></div>
+  </div>
+</div>
+<script>  
+function changeAnim(r,v){
+document.getElementByClassName(r).style.WebkitAnimationName = v;
+document.getElementByClassName(r).style.AnimationName = v;
+}
+speach('trouvez le bon chemin')
+     /* compassDisc.style.webkitTransform = "rotate("+ dir +"deg)";
+      compassDisc.style.MozTransform = "rotate("+ dir +"deg)";
+      compassDisc.style.transform = "rotate("+ dir +"deg)";*/</script>
+

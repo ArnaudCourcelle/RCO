@@ -1,0 +1,25 @@
+<style>
+#display {	
+	background-color:black;
+	background-image: url("../img/ambre.jpg");
+	background-size:cover;
+	background-repeat:no-repeat;
+	background-position: center; 
+	
+}
+.text1{
+	position:absolute;
+	text-align:center;
+	width:100%;
+	bottom:84%;
+	
+}
+
+
+</style>
+<div class='text1'>
+<h4>Rapprochez vous de Ambre</h4>
+<div>
+<script>
+speach('Rapprochez vous de Ambre');
+</script>

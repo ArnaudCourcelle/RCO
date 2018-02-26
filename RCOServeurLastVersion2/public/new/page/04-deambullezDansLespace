@@ -1,0 +1,14 @@
+<style>
+#display{
+    background-color:black;
+
+}
+.c{
+	
+}
+</style>
+<script>
+speach('deambulez dans lespace');
+</script>
+<div class="c">Déam-bullez
+</br> dans l’espace </div>

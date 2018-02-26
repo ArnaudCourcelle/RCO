@@ -1,0 +1,87 @@
+<!doctype html>
+<html>
+<head>
+<!--Author: Ben Taylor -->
+	<title>Yeah!</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="viewport" content="initial-scale=1., user-scalable=no, width=device-width"/>
+
+	<!--	<script type="text/javascript" src="script.js"></script>-->
+		<script type="text/javascript" src="shake.js"></script>
+		<script type="text/javascript" src="tone.min.js"></script>
+
+
+</head>
+	<body >
+<h1>hello</h1>
+	<div id="notice"></div>
+	<div id="notice2"></div>
+
+	<div class="compass">
+		<div class="arrow"></div>
+		<div class="disc" id="compassDiscImg"></div>
+	</div>
+
+	<div class="orientation-data">
+	
+	</div>
+	</body>
+	<script>
+	var note= new Tone.Player("applause.mp3").toMaster();
+	//note.autostart=true;
+	note.playbackRate=Math.random() * (1.3 - 0.8) + 0.8;
+	note.retrigger=true;
+	var fired=false;
+	var applause=0;
+	var tiltFB,tiltLR;
+	window.addEventListener('deviceorientation', function(eventData) {  	
+		tiltLR = eventData.gamma;
+    	tiltFB = eventData.beta;
+	});
+	  window.addEventListener('devicemotion', function(eventData) {  	
+    //var tiltLR = eventData.gamma;
+    //var tiltFB = eventData.beta;
+    var e=eventData.accelerationIncludingGravity;
+    //var dir = eventData.alpha;
+    document.getElementById("notice").innerHTML =e.x+' '+e.y+' '+e.z;
+    
+   /* if (tiltLR>50){
+    	tiltFB=Math.abs(180+tiltFB);
+    document.getElementById("notice2").innerHTML =Math.abs(180+tiltFB);
+}
+if (tiltLR<-50){
+	tiltFB=Math.abs(tiltFB);
+	document.getElementById("notice2").innerHTML =Math.abs(tiltFB);
+   // document.getElementById("notice").innerHTML =tiltFB;
+}
+
+	if ((applause-tiltFB>6)&&(tiltFB<6&&tiltFB>-6)){
+		note.start();
+	}*/
+	//applause=tiltFB;
+    //deviceOrientationHandler(tiltLR, tiltFB, dir);
+    if ((tiltFB>-20&&tiltFB<20)||(tiltFB<-160||tiltFB>160)){
+    	document.getElementById("notice2").innerHTML =tiltFB;
+    if (applause-e.x>10&&fired){
+    	note.start();
+    	fired=false;
+    }
+    if (e.x<-0){
+    	fired=true;
+    }
+}
+    applause=e.x;
+  }, false);
+	/*var shake=new Shake({threshold: 15,timeout: 50});
+	shake.start();
+	window.addEventListener("shake", funcshake);
+	function funcshake(){
+		document.getElementById("notice").innerHTML ="shahe";
+		note.start();
+
+	}*/
+
+
+
+	</script>
+</html>

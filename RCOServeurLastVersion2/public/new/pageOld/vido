@@ -1,0 +1,39 @@
+<style>
+video { 
+position: fixed;
+top: 50%;
+left: 50%;
+min-width: 100%;
+min-height: 100%;
+width: auto;
+height: auto;
+/*z-index: -100;*/
+-moz-transform: rotate(0 deg)translateX(-50%) translateY(-50%);
+-ms-transform: rotate(0 deg)translateX(-50%) translateY(-50%);
+-webkit-transform:rotate(0 deg) translateX(-50%) translateY(-50%);
+transform:  translateX(-50%) translateY(-50%);
+
+}
+</style>
+
+<video playsinline autoplay id="bgvid">
+  <source src="__P_MULTIPLE_B.mov" type="video/mp4">
+</video>
+
+<script>
+
+var video = document.getElementById("bgvid");
+
+video.addEventListener('ended', function()
+{
+video.play();
+}, false); 
+ 
+
+
+video.addEventListener('touchstart', function(e) {
+e.preventDefault();
+video.play();
+});
+
+</script>

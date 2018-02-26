@@ -1,0 +1,6 @@
+<script>
+  window.addEventListener('devicemotion', shake_applause,false)
+  window.addEventListener('deviceorientation',passTilt,false); 
+
+  </script>
+  secouez, synchronisez vous tous sur le même rythme!

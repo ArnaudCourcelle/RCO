@@ -1,0 +1,60 @@
+lumiere
+ecran de veille
+son
+
+page welcome
+illuminez les corps
+deplacer le public : invitaions au déplacements
+boussole
+déambullez dans l'espace
+rapprochez vous de mario
+rapprochez vous de la personne de votre choix
+synchronisation (shacker)->Battez le rythme ensemble....
+Restez dans le rythme
+Entrez dans la danse
+Suivez les danseurs
+Mettez vous face à une personne de votre choix, regardez là dans les yeux
+Rapprochez vous de Ambre
+Retrouvez votre partenaire de regard et dansez ensemble
+Cooperez avec les Danseurs
+Dessinez l'espace avec votre téléphone (sinusoides)
+shacker (rires+bébés)->approchez vous...
+portez Mario, etc(4 groupes)
+Laissez vous aller </br>au sol
+Echappez vous!
+Embrassez qui vous voulez
+Merci!
+
+
+
+ordre + intitulé
+danse avec les mains
+shacker
+rytme commun 
+//instructions du public?
+escape the danser
+4 elus boutons : leve le bras
+
+8 etapes  * 3
+
+faites 5 pas en avant
+1/4 de tour à gauche : 4 sec
+3 pas de coté à droite
+3 sauts sur place
+demi tour
+7 pas à reculons
+1 tour complet
+12 pas en zig-zag
+
+ist 5pasAvant 10000 
+float 2   --  list quartTour 4000 
+float 3   --  list 3pasDroite 6000 
+float 4   --  list 3sauts 6000 
+float 5   --  list demiTour 4000 
+float 6   --  list 7reculons 14000 
+float 7   --  list tour 4000 
+float 8   --  list zigzag 24000 
+
+3 cycle : 2 secondes par pas
+
+mettre les speach dans les pas

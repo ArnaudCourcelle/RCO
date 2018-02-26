@@ -1,0 +1,48 @@
+
+<!DOCTYPE html>
+
+<html>
+<head>
+	<meta charset='utf-8' />
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+	<title>RCO</title>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+		<script src="/socket.io/socket.io.js"></script>
+		
+	
+
+
+</head>
+
+<body >
+hello
+
+	<img src="img.jpg" alt="">
+</body>
+
+<script>
+var socket = io.connect();
+ //var socket = io(document.location.origin + '/mynamespace');
+
+      
+socket.on('connect', function() {
+	return;
+});
+var socket = io.connect();
+ //var socket = io(document.location.origin + '/mynamespace');
+
+ var tt=setInterval(function(){funk()},3);
+  var tt=setInterval(function(){funk2()},3000);
+function funk(){socket.emit('msg','tutu')}
+
+function funk2(){var img = new Image();
+img.src='img.jpg';}
+      
+	console.log('hello')
+
+	
+</script>
+
+</html>

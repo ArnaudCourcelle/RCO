@@ -1,0 +1,54 @@
+
+<!DOCTYPE html>
+
+<html>
+<head>
+	<meta charset='utf-8' />
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+	<title>RCO</title>
+	<link rel="stylesheet" type="text/css" href="css/normalize.min.css">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+		<script src="/socket.io/socket.io.js"></script>
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/screenfull.js"></script>
+		<script type="text/javascript" src="js/NoSleep.js"></script>
+		<script type="text/javascript" src="js/tone.min.js"></script>
+		<script type="text/javascript" src="js/startAudioContext.min.js"></script>
+		<script type="text/javascript" src="js/common.js"></script>
+		<script type="text/javascript" src="js/script.js"></script>
+		<script type="text/javascript" src="js/app.js"></script>
+
+
+
+</head>
+
+<body  onload="bodyload()">
+
+	
+	<!--<div id='myLog'></div>-->
+	<!--<div id="display2"  onclick="fbody()" ></div>-->
+	<div class="center">
+		<div id="display"  class="center" onclick="fbody()" ></div>
+		<!--<div id="display2"  class="center" onclick="fbody()" >Bienvenue avec RCO</div>-->
+	</div>
+	
+
+</body>
+
+<script>
+	//console.log('hello')
+	function bodyload(){
+		;
+	}
+	if(!audioStarted){
+		document.getElementById("display").innerHTML="touchez l'écran pour débloquer l'audio";
+	}
+	//openDiv("display2", "page/welcome");
+	//document.getElementById("display").style.visibility='hidden';
+	//page('attente');
+
+</script>
+
+</html>

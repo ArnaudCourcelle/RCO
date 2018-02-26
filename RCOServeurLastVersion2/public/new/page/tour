@@ -1,0 +1,76 @@
+
+
+
+
+<div class="center">1 tour complet</div>
+<style>
+#arrowAnim {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.arrow {
+  width: 5vw;
+  height: 5vw;
+  border: 2.5vw solid;
+  border-color: white transparent transparent white;
+  transform: rotate(-45deg)translateY(-15vw);
+}
+
+
+.arrowSliding {
+  position: absolute;
+  -webkit-animation: slide 4s linear infinite; 
+          animation: slide 4s linear infinite;
+         opacity:0;
+         
+}
+
+.delay1 {
+  -webkit-animation-delay: 1s; 
+    animation-delay: 1s;
+}
+.delay2 {
+  -webkit-animation-delay: 2s; 
+    animation-delay: 2s;
+}
+.delay3 {
+  -webkit-animation-delay: 3s; 
+    animation-delay: 3s;
+}
+
+@-webkit-keyframes slide {
+  0% { opacity:0; transform: rotate(180deg); }	
+   33% { opacity:1; transform: rotate(90deg); }	
+   66% { opacity:1; transform: rotate(-0deg); }	
+  100% { opacity:0; transform: rotate(-180deg); }		
+}
+@keyframes slide {
+    0% { opacity:0; transform: rotate(180deg); }	
+   33% { opacity:1; transform: rotate(90deg); }	
+   66% { opacity:1; transform: rotate(-0deg); }	
+  100% { opacity:0; transform: rotate(-180deg); }	
+}
+</style>
+
+<div id="arrowAnim">
+  <div class="arrowSliding">
+    <div class="arrow"></div>
+  </div>
+  <div class="arrowSliding delay1">
+    <div class="arrow"></div>
+  </div>
+  <div class="arrowSliding delay2">
+    <div class="arrow"></div>
+  </div>
+  <div class="arrowSliding delay3">
+    <div class="arrow"></div>
+  </div>
+  
+</div>
+<script>
+speach('un tour complet');
+</script>

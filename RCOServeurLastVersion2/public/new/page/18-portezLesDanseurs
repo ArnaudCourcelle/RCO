@@ -1,0 +1,16 @@
+<script>
+var xx=Math.floor(Math.random() * Math.floor(4));
+if (xx==0){
+	page('portemario')
+}
+if (xx==1){
+	page('porteambre')
+}
+if (xx==2){
+	page('porteisa')
+}
+if (xx==3){
+	page('portedavid')
+}
+
+</script>

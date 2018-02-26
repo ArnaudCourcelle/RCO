@@ -1,0 +1,8 @@
+
+Dessinez l'espace avec votre téléphone 
+<script>
+oscillo_dessin1.toMaster().start();
+oscillo_dessin2.toMaster().start();
+window.addEventListener('deviceorientation',Dessinez_l_espace,false); 
+speach('Dessinez lespace avec votre tailaiphone ');
+</script>

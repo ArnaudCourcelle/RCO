@@ -1,0 +1,38 @@
+
+<h4>
+ * Veuillez monter votre volume et la luminosité de votre smartphone au maximum.
+</br></br>
+<!--* En cas de mise en veille du smartphone, relancez votre navigateur.
+</br></br>-->
+
+<input id="play" class="button" onclick="toggleSound(this)" type="button" value="Testez le volume" ></input>
+</br></br>
+<input id="play" class="button" onclick="siteAcces()" type="button" value="accedez au site" />
+
+<script>
+function toggleSound(button) {
+       
+       //button.value = "Pause ";
+            if(!isPlaying) {
+                o = context.createOscillator()
+                o.type = "sine"
+                o.connect(context.destination)
+                o.start();
+                //playSound();
+                button.value = "Pause ";
+                isPlaying = true;
+                socket.emit('log','soundtest')
+            }
+            else {
+                o.disconnect(context.destination)
+                o.stop();
+                button.value = "Testez le volume";
+                isPlaying = false;
+            }
+        }
+function siteAcces(){
+    socket.emit('log','acces_site')
+    document.getElementById("display2").style.visibility='hidden';
+    document.getElementById("display").style.visibility='visible';
+}
+</script>

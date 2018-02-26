@@ -1,0 +1,232 @@
+
+Secouez très fort pour activer la suite </br>
+
+<div id="slidecontainerX">
+</div>
+
+<div id="myBar"/></>
+<script>
+socket.emit('log','shaker')
+
+</script>
+
+
+
+<style>
+#myProgress {
+  /*position:absolute;*/
+      z-index:1;
+      width:100%;
+      height:100%;
+      background-color: #37a3d0;
+}
+#myBar {
+      /*position:absolute;*/
+      z-index:1;
+      width: 100%;
+      height: 10px;
+      background-color: #fd9422;
+}
+#display{
+  z-index:2;
+}
+</style>
+
+
+<script>
+
+//vibrate commente + stopvibrate + isChrome
+
+
+/*if(isIOSChrome ||(isChromium !== null &&
+      typeof isChromium !== "undefined" &&
+      vendorName === "Google Inc." &&
+      isOpera === false &&
+      isIEedge === false) ){
+  */     
+sound.load("../sound/rires.mp3");
+sound.autostart=true;
+sound.connect(gain);
+gain.toMaster();
+gain.gain.value=0.2;
+//var contexteAudio = new (window.AudioContext || window.webkitAudioContext)();
+
+var timer;
+var volumeSound = 1.0;
+
+var largeur = window.innerWidth;
+var hauteur = window.innerHeight;
+
+var energieCumul = 0;
+var seuilEnergie = 1000;
+  var tolerance = 9+9+9+1; // la tolerance est egale a 2*MaxAccelero+1 avec MaxAccelero = 1;
+  var decr = 5;
+
+  var x = 0;
+  var y = 0;
+  var z = 0;
+
+
+
+  //vibrate();
+
+        if(window.DeviceOrientationEvent){
+          var x=20,y=20,z=20;
+          window.ondevicemotion = function(event) {
+
+
+          //condition d'arret
+          if(energieCumul >= seuilEnergie){
+                socket.emit('log','shacker_finish');
+                sound.stop();
+                accelerOff();
+              //  stopVibrate();
+                window.ondevicemotion = null;
+                
+
+                var changementPage = Math.floor(Math.random()*2); 
+
+                 if(changementPage == 0){
+                  page('imageisa');
+          } else if(changementPage == 1){
+                  page('imagemario');
+
+          }
+            else if(changementPage == 2){
+                  page('imageambre');
+                  }
+            else if(changementPage == 3){
+                  page('imagedavid');
+                  }
+            } 
+          else {
+             x = event.accelerationIncludingGravity.x; 
+              //document.getElementById("rangeX").value = x;
+              y = event.accelerationIncludingGravity.y;  
+            //  document.getElementById("rangeY").value = y;
+            z = event.accelerationIncludingGravity.z; 
+              //document.getElementById("rangeZ").value = z;
+           //console.log(z);
+           if (Math.abs(x)+Math.abs(y)+Math.abs(z)>tolerance){
+            energieCumul += (Math.abs(x)+Math.abs(y)+Math.abs(z))/8;
+                //pour faire decroitre le son
+                if(volumeSound < 1.0 || volumeSound > 0){
+                       volumeSound = 1-(energieCumul/1000); 
+                       gain.volume.value=volumeSound;
+
+               }        
+        } else {
+                if(energieCumul > 0 ){
+                        energieCumul -= decr;
+                        if(volumeSound <= 1.0){
+                               volumeSound = 1-(energieCumul/1000); 
+                               gain.gain.value=(Math.sqrt(volumeSound));
+                               sound.playbackRate=(Math.abs(2-volumeSound));
+
+                       }
+               
+                }
+        }
+          // console.log(energieCumul);
+          move(energieCumul/10);
+              //document.getElementById("rangeJauge").value = energieCumul;
+        }
+
+}
+        }else{
+          socket.emit('log','no_device_orientation')
+            console.log("DeviceOrientationEvent is not supported");
+              var changementPage = Math.floor(Math.random()*2); 
+                if(changementPage == 0){
+                        page('imageisa');
+                } else {
+                        page('imagemario');
+                }
+        }
+ // document.body.style.backgroundColor = "#AA0000";  
+//}
+
+
+
+
+
+
+
+
+function move(value) {
+    var elem = document.getElementById("myBar");   
+    var width = 1;
+    var id = setInterval(energieCumul, seuilEnergie);
+    if (width >= seuilEnergie) {
+          clearInterval(id);
+  } else {
+          width+=value; 
+          elem.style.height = width + '%'; 
+  }
+}
+
+
+
+function vibrate(){
+
+
+
+    if (isIOSChrome) {
+     // is Google Chrome on IOS
+     // traitement
+     window.navigator.vibrate(3000);
+     timer = setTimeout(vibrate,3000); 
+} else if (
+    isChromium !== null &&
+    typeof isChromium !== "undefined" &&
+    vendorName === "Google Inc." &&
+    isOpera === false &&
+    isIEedge === false
+    ) {
+     // is Google Chrome
+     // traitement
+     window.navigator.vibrate(3000);
+     timer = setTimeout(vibrate,3000); 
+}  else if(isFirefox){
+    window.navigator.vibrate(3000);
+    timer = setTimeout(vibrate,3000); 
+}else { 
+     // not Google Chrome 
+}
+
+}
+
+
+function stopVibrate() {
+
+
+      if (isIOSChrome) {
+     // is Google Chrome on IOS
+     // traitement
+     clearTimeout(timer);
+     timer = 0;
+     window.navigator.vibrate(0);
+} else if (
+    isChromium !== null &&
+    typeof isChromium !== "undefined" &&
+    vendorName === "Google Inc." &&
+    isOpera === false &&
+    isIEedge === false
+    ) {
+     // is Google Chrome
+     // traitement
+     clearTimeout(timer);
+     timer = 0;
+     window.navigator.vibrate(0);
+} else if(isFirefox){
+    clearTimeout(timer);
+    timer = 0;
+    window.navigator.vibrate(0);
+} else { 
+     // not Google Chrome 
+} 
+
+
+}
+speach('Secouez très fort pour activer la suite');
+</script>

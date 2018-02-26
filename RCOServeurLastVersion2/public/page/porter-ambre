@@ -1,0 +1,10 @@
+<style>
+#display {	
+	background-color:black;
+	background-image: url("../img/ambre.jpg");
+	background-size:contain;
+	background-repeat:no-repeat;
+	background-position: center; 
+}
+</style>
+portez la! 

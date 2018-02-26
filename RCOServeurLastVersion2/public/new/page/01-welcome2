@@ -1,0 +1,41 @@
+<h2>Bienvenu.e.s</br>
+ dans RCO</h2>
+<h4></br>Merci de toucher l'écran pour activer le son
+</h4>
+<script>
+var p = document.getElementById("display");
+	isInit=false;
+function initSound(){
+	if( /Android|webOS|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+		screenfull.request();
+	//noSleep.enable();
+	
+}
+console.log(isInit)
+  	if(!isInit){
+  	isInit=true;
+            
+
+         		
+                o.type = "sine"
+                o.connect(context.destination)
+                o.start();
+                isPlaying=true;
+               	o.disconnect(context.destination)
+                o.stop();
+                isPlaying=false;  
+ 
+       socket.emit('log', 'init_appli')
+              page('w-end');
+  		}
+  		  	
+
+  }
+
+  p.onclick = initSound;
+
+</script>
+<script>
+console.log(window.getComputedStyle(document.getElementById("ii"),null))
+</script>
+

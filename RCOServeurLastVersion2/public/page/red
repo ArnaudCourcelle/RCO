@@ -1,0 +1,36 @@
+<style>
+
+body{
+    background:red;
+}
+#display {
+	position: absolute;
+	z-index:1;
+    width: 100%;
+    height: 100%;
+    background-color:rgba(1,1,1,0);
+    -webkit-animation-name: example; /* Safari 4.0 - 8.0 */
+    -webkit-animation-duration: 4s; /* Safari 4.0 - 8.0 */
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-timing-function: ease-in;
+    -webkit-animation-direction: alternate;
+    animation-name: example;
+    animation-duration: 0.2s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+	animation-direction: alternate;
+}
+
+/* Safari 4.0 - 8.0 */
+@-webkit-keyframes example {
+    from {background-color: rgba(0,0,0,0);}
+    to {background-color: rgba(0,0,0,1);}
+}
+
+/* Standard syntax */
+@keyframes example {
+  from {background-color: rgba(0,0,0,0);}
+    to {background-color: rgba(0,0,0,1);}
+}
+</style>
+
