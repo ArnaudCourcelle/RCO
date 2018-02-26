@@ -1,0 +1,29 @@
+<style>
+
+
+#display {
+    background-color: white;
+    /*background-color:rgba(1,1,1,1);
+    -webkit-animation-name: example; 
+    -webkit-animation-duration: 4s; 
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-timing-function: ease-in;
+    -webkit-animation-direction: alternate;
+    animation-name: example;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+	animation-direction: alternate;*/
+}
+/*
+@-webkit-keyframes example {
+    from {background-color: black}
+    to {background-color: white;}
+}
+
+@keyframes example {
+  from {background-color: black}
+    to {background-color: white}
+}*/
+</style>
+
