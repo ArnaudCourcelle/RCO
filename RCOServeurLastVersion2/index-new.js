@@ -4,7 +4,7 @@ var serveStatic = require('serve-static');
 var app = express();
 app.use(compression());
 app.use(serveStatic(__dirname+'/public/new'));
-var server=app.listen(80);
+var server=app.listen(8080);
 var io = require('socket.io').listen(server,{'pingInterval': 1000,"pingTimeout":100000});
 function dat(){
   return new Date()+' '+new Date().getHours()+' H '+new Date().getMinutes()+' M '+ new Date().getSeconds()+' S '+new Date().getMilliseconds()+' ms' ;
