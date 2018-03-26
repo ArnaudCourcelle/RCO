@@ -3,14 +3,19 @@
 //var socket = require('socket.io-client')('http://rco.fr');
 //var socket = require('socket.io-client')('http://rco.fr');
 //var socket = require('socket.io-client')('http://127.0.0.1:8080/');
-var socket = require('socket.io-client')('http://rco.lri.fr');
+//var socket = require('socket.io-client')('http://localhost:8080');
+var socket = require('socket.io-client')('https://rco.lri.fr:8080');
 
 //var socket = require('socket.io-emitter')({ host: 'localhost', port: 8080 });
 var osc=require('node-osc');
-var oscServer=new osc.Server(8092,'localhost');
+//var oscServer=new osc.Server(8092,'localhost');
+var oscServer=new osc.Server(8092,'http://rco.lri.fr');
+
 var connected=false;
 console.log('start bis')
 console.log("ok")
+console.log("appel a testRCO.js")
+
 oscServer.on('message', function(m, rinfo) {
 	console.log("huhu");
 	//console.log(m);
