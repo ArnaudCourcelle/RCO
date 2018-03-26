@@ -2,7 +2,8 @@
 //var socket = require('socket.io-client')('https://rco.lri.fr');
 //var socket = require('socket.io-client')('http://rco.fr');
 //var socket = require('socket.io-client')('http://rco.fr');
-var socket = require('socket.io-client')('http://127.0.0.1:8080/');
+//var socket = require('socket.io-client')('http://127.0.0.1:8080/');
+var socket = require('socket.io-client')('http://rco.lri.fr/:8080');
 
 //var socket = require('socket.io-emitter')({ host: 'localhost', port: 8080 });
 var osc=require('node-osc');
