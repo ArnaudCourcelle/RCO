@@ -1,10 +1,10 @@
 //console.info("Socket.io chat test client");
 //var socket = require('socket.io-client')('https://rco.lri.fr');
 //var socket = require('socket.io-client')('http://rco.fr');
-var socket = require('socket.io-client')('http://localhost:8000');
+var socket = require('socket.io-client')('http://127.0.0.1:8080/');
 //var socket = require('socket.io-emitter')({ host: '127.0.0.1', port: 6379 });
 var osc=require('node-osc');
-var oscServer=new osc.Server(9011,'localhost');
+var oscServer=new osc.Server(8091,'localhost');
 var connected=false;
 console.log('start')
 oscServer.on('message', function(m, rinfo) {
